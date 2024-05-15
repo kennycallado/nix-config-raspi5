@@ -41,9 +41,6 @@
         modules = [
           ./hosts
           ./modules/system
-          # ./hardware.nix
-          # ./host.nix
-          # ./users.nix
 
           raspberry-pi-nix.nixosModules.raspberry-pi
           {
@@ -55,8 +52,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit host inputs agenix; };
-            # home-manager.users."${host.user.ussername}" = import ./modules/home;
-            # home-manager.users."kenny" = import ./modules/home;
+            home-manager.users."${host.config.user.username}" = import ./modules/home;
           }
         ];
       };
