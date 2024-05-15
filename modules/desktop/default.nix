@@ -2,7 +2,7 @@
 
 {
   imports = [
-    # ./xorg.nix
+    ./xrdp.nix
     ./icewm.nix
   ];
 
@@ -13,31 +13,26 @@
 
     libinput.enable = true;
 
-    displayManager.lightdm.enable = false;
-    displayManager.gdm = {
-      enable = true;
-      # wayland = true;
-      autoSuspend = false;
-    };
+    displayManager.lightdm.enable = true;
   };
 
     hardware.opengl = {
       enable = true;
       driSupport = true;
-      # driSupport32Bit = true;
       extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
     };
 
     fonts.packages = with pkgs; [
+      ocr-a
       noto-fonts
       noto-fonts-emoji
-      ocr-a
-      # (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
 
     environment.systemPackages = with pkgs; [
       xorg.xf86inputlibinput # ??
       alacritty
       libinput # ??
+      xclip
     ];
 }
