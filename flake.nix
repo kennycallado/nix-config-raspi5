@@ -43,7 +43,7 @@
           ./hosts
           ./modules/system
 
-          nixos-hardware.raspberry-pi-5
+          nixos-hardware.nixosModules.raspberry-pi-5
 
           raspberry-pi-nix.nixosModules.raspberry-pi
           {
