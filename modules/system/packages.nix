@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ host, lib, pkgs, ... }:
 let
   inherit (lib) getName;
 
