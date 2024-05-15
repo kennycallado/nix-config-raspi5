@@ -11,6 +11,7 @@ in
     ./networking.nix
     ./packages.nix
     ./services.nix
+    ./users.nix
   ];
 
   system.stateVersion = "23.11";
