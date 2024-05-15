@@ -5,11 +5,11 @@
     known = true;
 
     desktops = {
-      enable = false;
-      sway.enable = false;
-      icewm.enable = false;
-      icewm.default = false; # set icewm session as default
-      hyprland.enable = false;
+      enable = true;
+      # sway.enable = false;
+      icewm.enable = true;
+      icewm.default = true; # set icewm session as default
+      # hyprland.enable = false;
 
       xrdp = {
         enable = false;

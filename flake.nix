@@ -44,6 +44,11 @@
           ./modules/system
           ./modules/desktop
 
+          {
+            desktops = host.config.desktops;
+            sshd = host.config.sshd;
+          }
+
           nixos-hardware.nixosModules.raspberry-pi-5
 
           raspberry-pi-nix.nixosModules.raspberry-pi
