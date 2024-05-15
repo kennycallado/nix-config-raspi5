@@ -16,23 +16,23 @@
     displayManager.lightdm.enable = true;
   };
 
-    hardware.opengl = {
-      enable = true;
-      driSupport = true;
-      extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
-    };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
+  };
 
-    fonts.packages = with pkgs; [
-      ocr-a
-      noto-fonts
-      noto-fonts-emoji
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    ];
+  fonts.packages = with pkgs; [
+    ocr-a
+    noto-fonts
+    noto-fonts-emoji
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
 
-    environment.systemPackages = with pkgs; [
-      xorg.xf86inputlibinput # ??
-      alacritty
-      libinput # ??
-      xclip
-    ];
+  environment.systemPackages = with pkgs; [
+    xorg.xf86inputlibinput # ??
+    alacritty
+    libinput # ??
+    xclip
+  ];
 }
