@@ -36,7 +36,7 @@ in
 
     # bluez
     # bluez-tools
-  ];
+  ] ++ host.extraPackages;
 
   environment.variables = {
     PAGER = "less";

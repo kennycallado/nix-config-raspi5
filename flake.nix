@@ -27,11 +27,13 @@
 
       conf.name = "raspi5";
       conf.known = false;
+      conf.extraPackages = with inputs.nixpkgs.legacyPackages.aarch64-linux; [ firefox ];
 
       host =
         if (conf.known)
         then (import ./hosts/${conf.name}/config.nix)
-        else (import ./hosts/raspi5/config.nix);
+        else (import ./hosts/raspi5/config.nix)
+          // { extraPackages = conf.extraPackages; };
 
     in
     {
