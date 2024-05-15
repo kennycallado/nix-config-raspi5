@@ -12,6 +12,7 @@ in
     ./packages.nix
     ./services.nix
     ./users.nix
+    ./sshd.nix
   ];
 
   system.stateVersion = "23.11";

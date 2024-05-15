@@ -1,16 +1,16 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
-  services.openssh = {
-    enable = true;
-    settings = {
-      UseDns = true;
-      PasswordAuthentication = true;
-      # X11Forwarding = true;
-      # setXAuthLocation = true;
-      # KbdInteractiveAuthentication = false;
-    };
-  };
+  # services.openssh = {
+  #   enable = true;
+  #   settings = {
+  #     UseDns = true;
+  #     PasswordAuthentication = true;
+  #     # X11Forwarding = true;
+  #     # setXAuthLocation = true;
+  #     # KbdInteractiveAuthentication = false;
+  #   };
+  # };
 
   # services.xrdp = {
   #   enable = true;
