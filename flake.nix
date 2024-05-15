@@ -42,6 +42,7 @@
         modules = [
           ./hosts
           ./modules/system
+          ./modules/desktop
 
           nixos-hardware.nixosModules.raspberry-pi-5
 
