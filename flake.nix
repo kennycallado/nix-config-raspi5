@@ -10,6 +10,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +21,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, raspberry-pi-nix, home-manager, agenix }:
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, raspberry-pi-nix, home-manager, agenix }:
     let
       inherit (nixpkgs.lib) nixosSystem;
 
@@ -41,6 +42,8 @@
         modules = [
           ./hosts
           ./modules/system
+
+          nixos-hardware.raspberry-pi-5
 
           raspberry-pi-nix.nixosModules.raspberry-pi
           {
