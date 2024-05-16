@@ -6,7 +6,6 @@ in
 {
   nixpkgs.config = {
     allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
-      "outline"
       "google-chrome"
     ];
   };
@@ -44,5 +43,4 @@ in
   environment.variables = {
     PAGER = "less";
   };
-
 }
