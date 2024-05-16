@@ -74,4 +74,49 @@
       sed -i '/.*mp4.*$/d' ~/.bash_history && sed -i '/^yt-dlp/d' ~/.bash_history && sed -i '/^mpv/d' ~/.bash_history
     '';
   };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    style.name = "adwaita-dark";
+    style.package = pkgs.adwaita-qt;
+  };
+
+  gtk = {
+    enable = true;
+    font = {
+      name = "Ubuntu";
+      size = 12;
+      package = pkgs.ubuntu_font_family;
+    };
+    theme = {
+      name = "Adementary-dark";
+      package = pkgs.adementary-theme;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    cursorTheme = {
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+    };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
+
+  xdg = {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
+  };
 }
