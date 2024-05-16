@@ -40,7 +40,6 @@ in
 
     environment.systemPackages = with pkgs; [
       xorg.xf86inputlibinput # ??
-      networkmanagerapplet # TEST
       appimage-run
       alacritty
       libinput # ??
