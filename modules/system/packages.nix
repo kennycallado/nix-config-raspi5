@@ -4,10 +4,14 @@ let
 
 in
 {
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
-    "rustdesk"
-    "google-chrome"
-  ];
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
+      "rustdesk"
+      "libsciter"
+      "google-chrome"
+    ];
+    allowUnsupportedSystem = true;
+  };
 
   programs.neovim = {
     enable = true;
