@@ -41,6 +41,7 @@ in
     environment.systemPackages = with pkgs; [
       xorg.xf86inputlibinput # ??
       alacritty
+      rustdesk # ?? should
       libinput # ??
       xclip
     ];

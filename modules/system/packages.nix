@@ -5,6 +5,7 @@ let
 in
 {
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
+    "rustdesk"
     "google-chrome"
   ];
 
