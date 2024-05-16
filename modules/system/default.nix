@@ -10,6 +10,7 @@ in
     agenix
     ./networking.nix
     ./packages.nix
+    ./docker.nix
     ./users.nix
     ./sshd.nix
   ];
