@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, config, ... }:
 let
   agenix = {
     imports = [ inputs.agenix.nixosModules.age ];
@@ -10,7 +10,6 @@ in
     agenix
     ./networking.nix
     ./packages.nix
-    ./services.nix
     ./users.nix
     ./sshd.nix
   ];
@@ -25,6 +24,8 @@ in
   services.journald.extraConfig = ''
     SystemMaxUse=2G
   '';
+
+  services.blueman.enable = config.hardware.bluetooth.enable;
 
   nix = {
     settings.auto-optimise-store = true;
