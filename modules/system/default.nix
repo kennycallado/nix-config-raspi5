@@ -12,6 +12,8 @@ in
     ./packages.nix
     ./users.nix
     ./sshd.nix
+
+    ./outline.nix
   ];
 
   system.stateVersion = "23.11";

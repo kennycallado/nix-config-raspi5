@@ -6,6 +6,7 @@ in
 {
   nixpkgs.config = {
     allowUnfreePredicate = pkg: builtins.elem (getName pkg) [
+      "outline"
       "google-chrome"
     ];
   };
