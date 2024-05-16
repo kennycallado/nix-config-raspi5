@@ -46,10 +46,10 @@
           {
             email = "user.email@example.com";
             # bcrypt hash of the string "password": $(echo password | htpasswd -BinC 10 admin | cut -d: -f2)
-            hash = "10$TDh68T5XUK10$TDh68T5XUK10$TDh68T5XUK";
+            hash = "$2y$10$ICvcJUnRKeuFdocATI8oGe.6DGxamXY3/5A2WYO4y0d3s9WLXvrVC";
             username = "test";
             # easily generated with `$ uuidgen`
-            userID = "6D196B03-8A28-4D6E-B849-9298168CBA34";
+            userID = "95F24CEB-5A13-426E-B020-5B9C6C0A276A";
           }
         ];
       };
