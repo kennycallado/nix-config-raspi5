@@ -23,7 +23,7 @@
     };
 
     sshd = {
-      enable = false;
+      enable = true;
       tunnel = {
         enable = false;
         server = "";
