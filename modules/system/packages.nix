@@ -10,6 +10,8 @@ in
     ];
   };
 
+  programs.dconf.enable = true; # needed for gtk theme on home-manager
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;

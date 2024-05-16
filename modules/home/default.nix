@@ -82,8 +82,6 @@
     style.package = pkgs.adwaita-qt;
   };
 
-  programs.dconf.enable = true; # needed for gtk theme
-
   gtk = {
     enable = true;
     font = {
