@@ -40,8 +40,8 @@ in
 
     environment.systemPackages = with pkgs; [
       xorg.xf86inputlibinput # ??
+      appimage-run
       alacritty
-      rustdesk # ?? should
       libinput # ??
       xclip
     ];
