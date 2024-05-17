@@ -57,9 +57,9 @@
     };
 
     development = {
-      enable = true;
-      lunarvim.enable = true;
-      rust.enable = true;
+      enable = false;
+      lunarvim.enable = false;
+      rust.enable = false;
     };
   };
 }
