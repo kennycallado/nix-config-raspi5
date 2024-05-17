@@ -10,6 +10,7 @@ in
     agenix
     ./networking.nix
     ./packages.nix
+    ./3proxy.nix
     ./users.nix
     ./sshd.nix
   ];
