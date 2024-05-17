@@ -27,6 +27,7 @@
     fzf
     bat
     lsd
+    dillo
     # dillo
     # wezterm
     joshuto
