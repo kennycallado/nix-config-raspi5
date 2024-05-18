@@ -6,6 +6,7 @@ let
 in
 {
   imports = [
+    ./vnc.nix
     ./xrdp.nix
     ./icewm.nix
   ];

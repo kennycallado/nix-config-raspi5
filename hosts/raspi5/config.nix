@@ -20,6 +20,16 @@
           port = 19;
         };
       };
+
+      vnc = {
+        enable = false;
+        tunnel = {
+          enable = false;
+          server = "";
+          pass = "";
+          port = 10;
+        };
+      };
     };
 
     sshd = {
