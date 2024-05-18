@@ -4,6 +4,11 @@
   users = {
     mutableUsers = false; # maybe true?
 
+    # raspberry needed
+    groups.gpio = { };
+    groups.i2c = { };
+    groups.spi = { };
+
     users = {
 
       root.hashedPassword = "${host.config.user.rootHashedPassword}";
@@ -12,7 +17,6 @@
         isNormalUser = true;
         createHome = true;
         extraGroups = [ "wheel" "networkmanager" "disk" "video" "audio" ];
-        # password = mkIf (!host.config.known) "${host.config.user.password}";
         hashedPassword = "${host.config.user.userHashedPassword}";
         openssh.authorizedKeys.keys = [ "${host.config.user.sshPublicKey}" ];
       };
@@ -20,7 +24,7 @@
       guest = {
         isNormalUser = true;
         createHome = true;
-        extraGroups = [ "networkmanager" "disk" "video" "audio" ];
+        extraGroups = [ "disk" "video" "audio" ];
         initialPassword = "guest";
       };
     };

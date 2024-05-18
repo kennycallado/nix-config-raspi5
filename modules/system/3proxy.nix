@@ -9,21 +9,21 @@
     services = [
       {
         type = "socks";
-          auth = [ "strong" ];
-          acl = [ {
-            rule = "allow";
-            users = [ "kenny" ];
-          }
-        ];
+        auth = [ "strong" ];
+        acl = [{
+          rule = "allow";
+          users = [ "kenny" "guest" ];
+        }];
       }
     ];
     usersFile = "/etc/3proxy.passwd";
   };
 
+  # hash password with `openssl passwd -1` or https://unix4lyfe.org/crypt/
   environment.etc = {
     "3proxy.passwd".text = ''
-      kenny:CL:cartman
-      guest:CR:$1$JJ5mXOCy$V3umkH.V1lSAMb.Dn3dTT0
+      kenny:CR:$1$MiNqgSmw$1Aic2C6P6r8QympslSTK2/
+      guest:CL:guest
     '';
   };
 
@@ -33,10 +33,10 @@
 
     after = [ "network.target" "3proxy.service" ];
     wantedBy = [ "multi-user.target" ];
-    unitConfig = { Type = "Simple"; };
 
     serviceConfig = {
-      ExecStart = "${pkgs.bore-cli}/bin/bore local 1080 --port 6510 --to bore.kennycallado.dev --secret secreto";
+      type = "exec";
+      ExecStart = "${pkgs.bore-cli}/bin/bore local 1080 --port 6511 --to bore.kennycallado.dev --secret secreto";
       Restart = "always";
       RestartSec = "60";
       KillSignal = "SIGTERM";

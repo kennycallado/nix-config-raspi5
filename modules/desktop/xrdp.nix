@@ -31,9 +31,9 @@ in
 
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
-      unitConfig = { Type = "Simple"; };
 
       serviceConfig = {
+        Type = "simple";
         ExecStart = "${pkgs.bore-cli}/bin/bore local 3389 --port ${builtins.toString cfg.tunnel.port} --to ${cfg.tunnel.server} --secret ${cfg.tunnel.pass}";
         Restart = "always";
         RestartSec = "60";
