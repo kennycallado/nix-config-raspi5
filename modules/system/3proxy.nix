@@ -6,7 +6,7 @@ let
 in
 {
 
-  options.desktops.xrdp = {
+  options.proxy = {
     enable = mkEnableOption "Enable proxy server.";
     tunnel = {
       enable = mkEnableOption "Enable bore tunnel for proxy.";
