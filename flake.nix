@@ -60,6 +60,7 @@
 
           {
             desktops = host.config.desktops;
+            proxy = host.config.proxy;
             sshd = host.config.sshd;
           }
 

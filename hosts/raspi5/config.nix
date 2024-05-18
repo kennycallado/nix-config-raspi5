@@ -23,6 +23,7 @@
 
       vnc = {
         enable = false;
+        headless = true;
         tunnel = {
           enable = false;
           server = "";
