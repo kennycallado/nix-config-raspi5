@@ -32,6 +32,16 @@
       };
     };
 
+    proxy = {
+      enable = true;
+      tunnel = {
+        enable = false;
+        server = "";
+        pass = "";
+        port = 11;
+      };
+    };
+
     gaming.enable = false;
 
     virtualization = {
