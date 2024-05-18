@@ -1,7 +1,8 @@
 { lib, config, pkgs, ... }:
 let
-  cfg = config.sshd;
   inherit (lib) mkIf mkEnableOption mkOption types;
+  cfg = config.sshd;
+
 in
 {
 

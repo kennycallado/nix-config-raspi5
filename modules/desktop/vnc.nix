@@ -1,16 +1,16 @@
 { lib, config, pkgs, ... }:
 let
   inherit (lib) mkIf mkEnableOption mkOption;
-  cfg = config.desktops.xrdp;
+  cfg = config.desktops.vnc;
 
 in
 {
 
   options.desktops.vnc = {
     enable = mkEnableOption "Enable VNC server.";
+    headless = mkOption { type = lib.types.bool; };
     tunnel = {
       enable = mkEnableOption "Enable bore tunnel for VNC.";
-      headless = mkOption { type = lib.types.bool; default = false; };
       server = mkOption { type = lib.types.str; };
       pass = mkOption { type = lib.types.str; };
       port = mkOption { type = lib.types.int; };
@@ -25,7 +25,7 @@ in
       x11vnc
     ];
 
-    systemd.services.vnc-session = mkIf cfg.tunnel.headless {
+    systemd.services.vnc-session = mkIf cfg.headless {
       enable = true;
       description = "VNC Session for headless";
 
@@ -53,7 +53,7 @@ in
     };
 
 
-    systemd.services.vnc-server = mkIf cfg.tunnel.headless {
+    systemd.services.vnc-server = mkIf cfg.headless {
       enable = true;
       description = "VNC Server for hiddenVnc";
 
@@ -81,7 +81,7 @@ in
 
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.bore-cli}/bin/bore local 5900 --port 6510 --to bore.kennycallado.dev --secret secreto";
+        ExecStart = "${pkgs.bore-cli}/bin/bore local 5900 --port ${builtins.toString cfg.tunnel.port} --to ${builtins.toString cfg.tunnel.server} --secret ${cfg.tunnel.pass}";
         Restart = "always";
         RestartSec = "60";
         KillSignal = "SIGTERM";

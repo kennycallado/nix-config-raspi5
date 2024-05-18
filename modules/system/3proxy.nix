@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 let
   inherit (lib) mkIf mkEnableOption mkOption;
-  cfg = config.desktops.xrdp;
+  cfg = config.proxy;
 
 in
 {
