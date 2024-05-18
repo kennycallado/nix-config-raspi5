@@ -20,9 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, raspberry-pi-nix, home-manager, agenix }:
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, raspberry-pi-nix, home-manager, agenix, deploy-rs }:
     let
       inherit (nixpkgs.lib) nixosSystem;
 
@@ -35,6 +36,16 @@
         then (import ./hosts/${conf.name}/config.nix)
         else (import ./hosts/raspi5/config.nix)
           // { extraPackages = conf.extraPackages; };
+
+      system = "aarch64-linux";
+      pkgs = import nixpkgs { inherit system; };
+      deployPkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          deploy-rs.overlay # or deploy-rs.overlays.default
+          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+        ];
+      };
 
     in
     {
@@ -68,6 +79,22 @@
           }
         ];
       };
+
+      deploy.nodes.raspi5 = {
+        hostname = "raspi5";
+        remoteBuild = true;
+        magicRollback = false;
+        # interactiveSudo = false; # WARNING: true breaks the deploy
+        sshOpts = [ "-t" "-oControlMaster=no" ];
+
+        profiles.system = {
+          user = "root";
+          path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.raspi5;
+        };
+      };
+
+      # it compiles linux : because boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+      # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
       # formatter.${host.config.arch} = inputs.nixpkgs.legacyPackages.${host.config.arch}.nixpkgs-fmt;
       formatter."x86_64-linux" = inputs.nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
