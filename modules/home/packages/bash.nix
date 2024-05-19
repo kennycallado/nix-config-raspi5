@@ -31,7 +31,7 @@
       lal = "lsd -al";
       ".." = "cd ..";
       lv = "lvim";
-      rvim = "NVIM_APPNAME=nvim/Launch nvim";
+      rvim = "NVIM_APPNAME=nvim/launch nvim";
     };
 
     historyIgnore = [ "yt-dpl *" "mpv *" ];
