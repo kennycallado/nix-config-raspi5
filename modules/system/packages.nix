@@ -35,6 +35,7 @@ in
     p7zip
     unzip
     killall
+    joshuto
     # lm_sensors
     cryptsetup
 
