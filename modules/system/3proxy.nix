@@ -50,7 +50,7 @@ in
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
-        type = "exec";
+        Type = "exec";
         ExecStart = "${pkgs.bore-cli}/bin/bore local 1080 --port ${builtins.toString cfg.tunnel.port} --to ${builtins.toString cfg.tunnel.server} --secret ${cfg.tunnel.pass}";
         Restart = "always";
         RestartSec = "60";

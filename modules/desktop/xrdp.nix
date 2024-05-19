@@ -17,8 +17,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    # networking.firewall.allowedTCPPorts = [ 3389 ];
-
     services.xrdp = {
       enable = true;
       defaultWindowManager = "${pkgs.icewm}/bin/icewm-session";
@@ -29,18 +27,17 @@ in
       enable = true;
       description = "Bore tunnel for xrdp";
 
-      after = [ "network.target" ];
+      after = [ "network.target" "xrdp.service" ];
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
-        Type = "simple";
+        Type = "exec";
         ExecStart = "${pkgs.bore-cli}/bin/bore local 3389 --port ${builtins.toString cfg.tunnel.port} --to ${cfg.tunnel.server} --secret ${cfg.tunnel.pass}";
         Restart = "always";
         RestartSec = "60";
         KillSignal = "SIGTERM";
         StandardOutput = "journal";
         StandardError = "journal";
-        # StandardOutput = "file:/home/kenny/tunnel-xrdp.log"; # temp
       };
     };
   };

@@ -60,9 +60,9 @@ in
       after = [ "vnc-session.service" ];
 
       serviceConfig = {
+        Type = "exec";
         User = "guest";
         Group = "users";
-        Type = "exec";
         ExecStart = ''${pkgs.x11vnc}/bin/x11vnc -display :90 -shared -forever'';
         Restart = "always";
         RestartSec = "60";
@@ -76,11 +76,11 @@ in
       enable = true;
       description = "Bore tunnel for vnc";
 
-      after = [ "network.target" ];
+      after = [ "network.target" "vnc-server.service" ];
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
-        Type = "simple";
+        Type = "exec";
         ExecStart = "${pkgs.bore-cli}/bin/bore local 5900 --port ${builtins.toString cfg.tunnel.port} --to ${builtins.toString cfg.tunnel.server} --secret ${cfg.tunnel.pass}";
         Restart = "always";
         RestartSec = "60";

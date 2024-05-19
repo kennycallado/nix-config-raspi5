@@ -34,16 +34,15 @@ in
 
       after = [ "network.target" "sshd.service" ];
       wantedBy = [ "multi-user.target" ];
-      unitConfig = { Type = "Simple"; };
 
       serviceConfig = {
+        Type = "exec";
         ExecStart = "${pkgs.bore-cli}/bin/bore local 22 --port ${builtins.toString cfg.tunnel.port} --to ${cfg.tunnel.server} --secret ${cfg.tunnel.pass}";
         Restart = "always";
         RestartSec = "60";
         KillSignal = "SIGTERM";
         StandardOutput = "journal";
         StandardError = "journal";
-        # StandardOutput = "file:/home/kenny/tunnel-sshd.log"; # temp
       };
     };
   };
